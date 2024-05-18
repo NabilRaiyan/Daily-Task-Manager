@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return "MAin Page";
+    return view('index', [
+            'name'=>'Raiyan',
+            'age' => 24,
+    ]);
 });
 
 
