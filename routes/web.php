@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-
+// Creating a task class and objects of that class
 class Task
 {
     public function __construct(
@@ -56,32 +56,38 @@ $tasks = [
     ),
 ];
 
+//  showing all the tasks
 Route::get('/', function () use($tasks) {
     return view('index', [
             // 'name'=>'Raiyan',
             // 'age' => 24,
             'tasks'=> $tasks,
-
-
     ]);
-});
+})->name("tasks.index");
+
+// showing single task
+
+Route::get("{id}", function($id){
+
+    return "Single task " . $id;
+})->name("single-task.show");
 
 
-Route::get("/hello", function(){
-    $num1 = 20;
-    $num2 = 30;
-    $result = $num1 + $num2;
+// Route::get("/hello", function(){
+//     $num1 = 20;
+//     $num2 = 30;
+//     $result = $num1 + $num2;
 
-    return "Hello from another page and the result is ". $result .".";
-})->name("hello");
+//     return "Hello from another page and the result is ". $result .".";
+// })->name("hello");
 
-Route::get("/greet/{name}", function($name){
-    return "Hello " . $name . " !";
-});
+// Route::get("/greet/{name}", function($name){
+//     return "Hello " . $name . " !";
+// });
 
-Route::get("/nope", function(){
-    return redirect()->route('hello');
-});
+// Route::get("/nope", function(){
+//     return redirect()->route('hello');
+// });
 
 // if all the route is not exist then show this message
 Route::fallback(function(){

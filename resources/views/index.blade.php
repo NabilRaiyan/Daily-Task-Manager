@@ -11,11 +11,13 @@
     <div>
         @if (count($tasks) > 0)
             @foreach ($tasks as $task)
-                <p>Task: {{$task->id}}</p>
-                <p>{{$task->title}}</p>
-                <p>{{$task->description}}</p>
-                <p>{{$task->long_description}}</p>
-                <br><br>
+                <div>
+                    <p>Task: {{$task->id}}</p>
+                    <p><a href="{{ route('single-task.show', ['id'=>$task->id])}}">{{$task->title}}</a></p>
+                    <p>{{$task->description}}</p>
+                    <p>{{$task->long_description}}</p>
+                    <br><br>
+                </div>
 
             @endforeach
             @else
