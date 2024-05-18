@@ -12,6 +12,9 @@
 
     <p>{{$task->created_at}}</p>
     <p>{{$task->updated_at}}</p>
+
+    <!-- giving route name to go back to the tasks page -->
+    <a href="{{route('tasks.index')}}">Back</a>
 </div>
 
 @endsection
