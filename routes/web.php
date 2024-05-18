@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 // Creating a task class and objects of that class
@@ -56,8 +57,12 @@ $tasks = [
     ),
 ];
 
+Route::get("/", function(){
+    return redirect()->route('tasks.index');
+});
+
 //  showing all the tasks
-Route::get('/', function () use($tasks) {
+Route::get('/tasks', function () use($tasks) {
     return view('index', [
             // 'name'=>'Raiyan',
             // 'age' => 24,
@@ -67,9 +72,13 @@ Route::get('/', function () use($tasks) {
 
 // showing single task
 
-Route::get("{id}", function($id){
+Route::get("/tasks/{id}", function($id) use($tasks){
 
-    return "Single task " . $id;
+    $task = collect($tasks)->firstWhere('id', $id);
+    if (!$task){
+        abort(Response::HTTP_NOT_FOUND);
+    }
+    return view('show', ['task'=>$task]);
 })->name("single-task.show");
 
 
