@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 // Creating a task class and objects of that class
 // class Task
@@ -70,8 +71,11 @@ Route::get('/tasks', function (){
     ]);
 })->name("tasks.index");
 
-// showing single task
+// adding task form
+Route::view("/tasks/createTask", "createForm")->name("task-create");
 
+
+// showing single task
 Route::get("/tasks/{id}", function($id){
 
     $task = \App\Models\Task ::findOrFail($id); // getting specific task using id if exist
@@ -79,6 +83,10 @@ Route::get("/tasks/{id}", function($id){
 })->name("single-task.show");
 
 
+// inserting data using post method
+Route::post("/tasks/create", function(Request $request){
+    dd($request->all());
+})->name("task.store");
 
 
 // Route::get("/hello", function(){
