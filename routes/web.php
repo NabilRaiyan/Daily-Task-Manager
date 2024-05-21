@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Response;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,7 @@ Route::get('/tasks', function (){
     return view('index', [
             // 'name'=>'Raiyan',
             // 'age' => 24,
-            'tasks'=> \App\Models\Task::all(),
+            'tasks'=> Task::all(),
     ]);
 })->name("tasks.index");
 
@@ -78,14 +79,31 @@ Route::view("/tasks/createTask", "createForm")->name("task-create");
 // showing single task
 Route::get("/tasks/{id}", function($id){
 
-    $task = \App\Models\Task ::findOrFail($id); // getting specific task using id if exist
+    $task = Task ::findOrFail($id); // getting specific task using id if exist
     return view('show', ['task'=>$task]);
 })->name("single-task.show");
 
 
 // inserting data using post method
 Route::post("/tasks/create", function(Request $request){
-    dd($request->all());
+    // dd($request->all());
+
+    // validating the form sunbmission
+    $data = $request->validate([
+        "title" => 'required|max:255',
+        "description" => 'required',
+        "long_description" => 'required',
+    ]);
+
+    // creating new task and inserting data into db
+    $task = new Task();
+    $task->title = $data['title'];
+    $task->description = $data['description'];
+    $task->long_description = $data['long_description'];
+
+    $task->save();
+    return redirect()->route('single-task.show', ['id' => $task->id]);
+
 })->name("task.store");
 
 

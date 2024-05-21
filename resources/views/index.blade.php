@@ -24,4 +24,5 @@
            
         <!-- @endif -->
     </div>
+    <a href="{{route('task-create')}}">Create Task</a>
 

@@ -19,4 +19,6 @@
             <button type="submit">Add Task</button>
         </div>
     </form>
+
+    <a href="{{route('tasks.index')}}">Back to all task</a>
 @endsection
