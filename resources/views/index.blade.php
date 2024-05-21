@@ -15,6 +15,10 @@
         display: inline-block;
     }
 
+    .task-id{
+        margin-right: 10px;
+    }
+
     .task-div{
         margin-bottom: 7px;
     }
