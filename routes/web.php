@@ -76,12 +76,47 @@ Route::get('/tasks', function (){
 Route::view("/tasks/createTask", "createForm")->name("task-create");
 
 
+// edit task view
+Route::get("/tasks/{id}/edit", function($id){
+
+    $task = Task ::findOrFail($id); // getting specific task using id if exist
+    return view('edit', ['task'=>$task]);
+})->name("edit-task");
+
+
+
 // showing single task
 Route::get("/tasks/{id}", function($id){
 
     $task = Task ::findOrFail($id); // getting specific task using id if exist
     return view('show', ['task'=>$task]);
 })->name("single-task.show");
+
+// updating data using put method
+Route::put("/tasks/{id}", function($id, Request $request){
+    // dd($request->all());
+
+    // validating the form sunbmission
+    $data = $request->validate([
+        "title" => 'required|max:255',
+        "description" => 'required',
+        "long_description" => 'required',
+    ]);
+
+    // creating new task and inserting data into db
+    $task = Task::findOrFail($id);
+    $task->title = $data['title'];
+    $task->description = $data['description'];
+    $task->long_description = $data['long_description'];
+
+    $task->save();
+    return redirect()->route('single-task.show', ['id' => $task->id])
+        ->with("success", "Task updated successfully"); // creating a temporary session called 'success' for 
+                                                            //flash message when the task is successfully created
+})->name("task-update");
+
+
+
 
 
 // inserting data using post method
@@ -102,7 +137,9 @@ Route::post("/tasks/create", function(Request $request){
     $task->long_description = $data['long_description'];
 
     $task->save();
-    return redirect()->route('single-task.show', ['id' => $task->id]);
+    return redirect()->route('single-task.show', ['id' => $task->id])
+        ->with("success", "Task created successfully"); // creating a temporary session called 'success' for 
+                                                            //flash message when the task is successfully created
 
 })->name("task.store");
 
