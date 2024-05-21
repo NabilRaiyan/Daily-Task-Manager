@@ -36,7 +36,6 @@
         color: green;
     }
 </style>
-
 @endsection
 <!-- 
     //if $name is set then show this else don't show
