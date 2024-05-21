@@ -12,6 +12,7 @@
     </style>
 @endsection
 
+<!-- adding content section -->
 @section('content')
     <form action="{{route('task.store')}}" method="POST">
         @csrf 
