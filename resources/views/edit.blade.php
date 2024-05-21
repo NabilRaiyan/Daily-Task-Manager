@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+    <!-- adding task update route and form  -->
     <form action="{{route('task-update', ['id'=>$task->id])}}" method="POST">
         @csrf 
         @method("PUT")
