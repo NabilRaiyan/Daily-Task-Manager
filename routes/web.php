@@ -157,7 +157,7 @@ Route::delete("/tasks/{id}", function($id){
 Route::put('/tasks/{id}/complete-toggle', function($id){
     $task = Task::findOrFail($id);
     $task->toggleComplete();
-    return redirect()->back()->with("success", 'Task state updated successfully!');
+    return redirect()->back();
 
 })->name('task.toggle-complete');
 

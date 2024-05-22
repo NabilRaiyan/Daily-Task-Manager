@@ -32,11 +32,14 @@
         <!-- giving route name to go back to the tasks page -->
         <a href="{{route('tasks.index')}}">Back</a>
 
-        @if ($task->completed)
-            Completed
-        @else
-            Not Completed
-        @endif
+        <div> Task Status: 
+            @if ($task->completed)
+                Completed
+            @else
+                Not Completed
+            @endif
+        </div>
+
     </div>
 
     <div>
@@ -48,15 +51,6 @@
     </div>
 
 
-    <div>
-        <form method="POST" action="{{route('task.toggle-complete', ['id'=>$task->id])}}">
-            @csrf
-            @method("PUT")
-            <button type="submit">
-                Task {{$task->completed ? '✅' : '❌'}}
-            </button>
-        
-        </form>
-    </div>
+    
 
 @endsection

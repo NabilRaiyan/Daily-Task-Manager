@@ -4,6 +4,11 @@
 
 @section('styles')
 <style>
+
+    .task-complete-toggle{
+        display: inline-block;
+        margin-left: 10px;
+    }
     .edit-btn{
         color: green;
         font-size: 0.9rem;
@@ -61,6 +66,24 @@
                     <p>{{$task->long_description}}</p> -->
                     <a class="edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
                     <a href="{{route('task-delete', ['id'=>$task->id])}}" class="delete-btn">Delete Task</a>
+                    <div class="task-complete-toggle">
+                        <form method="POST" action="{{route('task.toggle-complete', ['id'=>$task->id])}}">
+                            @csrf
+                            @method("PUT")
+                            <button type="submit">
+                                Task {{$task->completed ? '✅' : '❌'}}
+                            </button>
+
+                            <div class="task-complete-toggle">
+                            @if ($task->completed)
+                                <span>Completed</span>
+                            @else
+                                <span>Not Completed</span>
+                            @endif
+                        </div>
+                        </form>
+                       
+                </div>
                 </div>
                 @empty
                     <h2>No task</h2>
@@ -71,6 +94,8 @@
                     {{$tasks->links('pagination::simple-bootstrap-5')}}
                 </nav>
             @endif
+
+            
            
     </div>
     <a class="create-btn" href="{{route('task-create')}}">Create Task</a>
