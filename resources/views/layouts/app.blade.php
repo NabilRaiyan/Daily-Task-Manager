@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List Manager | Laravel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- adding styles directive -->
     @yield('styles') 
 </head>
-<body>
+<body class="container mt-10 mb-10 mx-auto">
     <div>
-        <h1>@yield('title')</h1>
-        <div>
+        <h1 class="mt-5 mb-5 text-lg">@yield('title')</h1>
+        <div class="mt-5 mb-5 text-xl">
             <!-- showing flash message -->
             @if (session()->has('success'))
-                <div>{{session('success')}}</div>
+                <div class="text-green-800">{{session('success')}}</div>
             @endif
             @yield('content')
         </div>

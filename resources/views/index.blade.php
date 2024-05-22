@@ -1,6 +1,5 @@
 @extends('layouts.app')
-
-<div>Hello from blade template</div>
+<!-- 'pagination::simple-bootstrap-5' -->
 
 @section('styles')
 <style>
@@ -56,33 +55,32 @@
 @endisset -->
 @section('content')
 
-    <h3>All Taks</h3>
-    <div>
+    <h3 class="mb-5 mt-10 text-2xl">All Taks</h3>
+    <div class="bg-orange-100 mt-10 rounded-md p-8  w-full">
             @forelse ($tasks as $task)
-                <div class="task-div">
-                    <p class="task-id">Task: {{$task->id}}</p>
-                    <p class="task-title"><a href="{{ route('single-task.show', ['id'=>$task->id])}}">{{$task->title}}</a></p>
+                <div class="task-div mt-5">
+                    <p class=inline-block task-id text-base">Task: {{$task->id}}</p>
+                    <p class=inline-block task-title text-base"><a href="{{ route('single-task.show', ['id'=>$task->id])}}">{{$task->title}}</a></p>
                     <!-- <p>{{$task->description}}</p>
                     <p>{{$task->long_description}}</p> -->
-                    <a class="edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
-                    <a href="{{route('task-delete', ['id'=>$task->id])}}" class="delete-btn">Delete Task</a>
-                    <div class="task-complete-toggle">
+                    <a class="inline-block edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
+                    <a href="{{route('task-delete', ['id'=>$task->id])}}" class="inline-block delete-btn">Delete Task</a>
+                    <div class="inline-block task-complete-toggle">
                         <form method="POST" action="{{route('task.toggle-complete', ['id'=>$task->id])}}">
                             @csrf
                             @method("PUT")
-                            <button type="submit">
+                            <button type="submit" class="text-base bg-orange-50 p-1 rounded-md">
                                 Task {{$task->completed ? '✅' : '❌'}}
                             </button>
 
-                            <div class="task-complete-toggle">
+                            <div class="task-complete-toggle inline-block ">
                             @if ($task->completed)
-                                <span>Completed</span>
+                                <span class="text-base text-green-700 font-serif">Completed</span>
                             @else
-                                <span>Not Completed</span>
+                                <span class="text-base text-red-700 font-serif">Not Completed</span>
                             @endif
                         </div>
                         </form>
-                       
                 </div>
                 </div>
                 @empty
@@ -90,8 +88,8 @@
             @endforelse
 
             @if ($tasks->count())
-                <nav>
-                    {{$tasks->links('pagination::simple-bootstrap-5')}}
+                <nav class="mt-10 mb-8">
+                    {{$tasks->links()}} 
                 </nav>
             @endif
 
