@@ -55,7 +55,10 @@
 @endisset -->
 @section('content')
 
-    <h3 class="mb-5 mt-10 text-2xl">All Taks</h3>
+    <h3 class="mb-5 mt-10 text-2xl text-gray-900 inline-block">All Taks</h3>
+    <a class="bg-green-200 text-md font-serif text-gray-700 p-2 rounded-md ml-10" href="{{route('task-create')}}">Create Task</a>
+
+   
     <div class="bg-orange-100 mt-10 rounded-md p-8  w-full">
             @forelse ($tasks as $task)
                 <div class="task-div mt-5">
@@ -84,17 +87,12 @@
                 </div>
                 </div>
                 @empty
-                    <h2>No task</h2>
-            @endforelse
-
-            @if ($tasks->count())
+                    <h2 class="text-2xl text-gray-900">No task</h2>
+            @endforelse   
+    </div>
+    @if ($tasks->count())
                 <nav class="mt-10 mb-8">
                     {{$tasks->links()}} 
                 </nav>
             @endif
-
-            
-           
-    </div>
-    <a class="create-btn" href="{{route('task-create')}}">Create Task</a>
 @endsection
