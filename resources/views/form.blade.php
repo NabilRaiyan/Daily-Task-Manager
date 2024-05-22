@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <!-- reuseable form for update and add -->
-@section('title', isset($task) ? 'Edit title' : 'Add Task')
+@section('title', isset($task) ? 'Edit Task' : 'Add Task')
 <!-- style directive -->
 @section('styles')
     <style>
