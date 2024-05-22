@@ -68,7 +68,7 @@ Route::get('/tasks', function (){
     return view('index', [
             // 'name'=>'Raiyan',
             // 'age' => 24,
-            'tasks'=> Task::all(),
+            'tasks'=> Task::latest()->paginate(),
     ]);
 })->name("tasks.index");
 

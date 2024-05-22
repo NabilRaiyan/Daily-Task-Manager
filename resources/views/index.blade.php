@@ -49,10 +49,10 @@
 @isset($name)
     <div>Hello My name is {{$name}} and I am {{$age}} years old</div>
 @endisset -->
+@section('content')
 
     <h3>All Taks</h3>
     <div>
-        <!-- @if (count($tasks) > 0) -->
             @forelse ($tasks as $task)
                 <div class="task-div">
                     <p class="task-id">Task: {{$task->id}}</p>
@@ -61,13 +61,17 @@
                     <p>{{$task->long_description}}</p> -->
                     <a class="edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
                     <a href="{{route('task-delete', ['id'=>$task->id])}}" class="delete-btn">Delete Task</a>
-
                 </div>
                 @empty
                     <h2>No task</h2>
             @endforelse
+
+            @if ($tasks->count())
+                <nav>
+                    {{$tasks->links('pagination::simple-bootstrap-5')}}
+                </nav>
+            @endif
            
-        <!-- @endif -->
     </div>
     <a class="create-btn" href="{{route('task-create')}}">Create Task</a>
-
+@endsection
