@@ -62,8 +62,8 @@
     <div class="bg-orange-100 mt-10 rounded-md p-8  w-full">
             @forelse ($tasks as $task)
                 <div class="task-div mt-5">
-                    <p class=inline-block task-id text-base">Task: {{$task->id}}</p>
-                    <p class=inline-block task-title text-base"><a href="{{ route('single-task.show', ['id'=>$task->id])}}">{{$task->title}}</a></p>
+                    <p class="inline-block task-id text-base">Task: {{$task->id}}</p>
+                    <p class="inline-block task-title text-base"><a href="{{ route('single-task.show', ['id'=>$task->id])}}">{{$task->title}}</a></p>
                     <!-- <p>{{$task->description}}</p>
                     <p>{{$task->long_description}}</p> -->
                     <a class="inline-block edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
