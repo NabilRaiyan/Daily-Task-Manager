@@ -11,6 +11,13 @@
         margin-left: 10px;
     }
 
+    .delete-btn{
+        color: red;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
     .task-title, .task-id{
         display: inline-block;
     }
@@ -53,6 +60,7 @@
                     <!-- <p>{{$task->description}}</p>
                     <p>{{$task->long_description}}</p> -->
                     <a class="edit-btn" href="{{route('edit-task', ['id'=>$task->id])}}">Edit Task</a>
+                    <a href="{{route('task-delete', ['id'=>$task->id])}}" class="delete-btn">Delete Task</a>
 
                 </div>
                 @empty

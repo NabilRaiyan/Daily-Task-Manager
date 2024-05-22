@@ -144,6 +144,17 @@ Route::post("/tasks/create", function(Request $request){
 })->name("task.store");
 
 
+
+// deleting task from the db
+Route::delete("/tasks/{id}", function($id){
+    $task = Task::findOrFail($id);
+    $task->delete();
+    return redirect()->route('tasks.index')
+        ->with('success', "Successfully deleted the task");
+})->name('task-delete');
+
+
+
 // Route::get("/hello", function(){
 //     $num1 = 20;
 //     $num2 = 30;
