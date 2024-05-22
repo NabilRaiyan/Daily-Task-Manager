@@ -31,6 +31,12 @@
 
         <!-- giving route name to go back to the tasks page -->
         <a href="{{route('tasks.index')}}">Back</a>
+
+        @if ($task->completed)
+            Completed
+        @else
+            Not Completed
+        @endif
     </div>
 
     <div>
@@ -38,6 +44,18 @@
             @csrf
             @method('delete')
             <button class="delete-btn" type="submit">Delete</button>
+        </form>
+    </div>
+
+
+    <div>
+        <form method="POST" action="{{route('task.toggle-complete', ['id'=>$task->id])}}">
+            @csrf
+            @method("PUT")
+            <button type="submit">
+                Task {{$task->completed ? '✅' : '❌'}}
+            </button>
+        
         </form>
     </div>
 

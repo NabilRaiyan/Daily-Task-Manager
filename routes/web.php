@@ -116,9 +116,6 @@ Route::put("/tasks/{id}", function($id, Request $request){
 })->name("task-update");
 
 
-
-
-
 // inserting data using post method
 Route::post("/tasks/create", function(Request $request){
     // dd($request->all());
@@ -154,6 +151,15 @@ Route::delete("/tasks/{id}", function($id){
 })->name('task-delete');
 
 
+
+// toggle task complete state
+
+Route::put('/tasks/{id}/complete-toggle', function($id){
+    $task = Task::findOrFail($id);
+    $task->toggleComplete();
+    return redirect()->back()->with("success", 'Task state updated successfully!');
+
+})->name('task.toggle-complete');
 
 // Route::get("/hello", function(){
 //     $num1 = 20;
