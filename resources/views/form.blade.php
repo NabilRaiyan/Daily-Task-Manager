@@ -39,7 +39,7 @@
             <p class="error-message">{{$message}}</p>
         @enderror
         <div>
-        <textarea class="text-base text-slate-600 w-6/12 mt-3 border p-2 border-orange-400 rounded-md" placeholder="Long Description" rows="10" name="long_description" id="long_description">{{$task->long_description ?? old('long_description')}}</textarea>
+        <textarea class="text-base text-slate-600 w-6/12 mt-3 border p-2 border-orange-400 rounded-md mb-5" placeholder="Long Description" rows="10" name="long_description" id="long_description">{{$task->long_description ?? old('long_description')}}</textarea>
         </div>
         @error ('long_description')
             <p class="error-message">{{$message}}</p>
