@@ -55,5 +55,5 @@
     </form>
 
     <!-- adding tasks route to go back to the all task -->
-    <a class="bg-blue-200 text-base font-serif text-gray-700 p-2 rounded-md" href="{{route('tasks.index')}}">⬅️ Back to all task</a>
+    <a class="bg-red-200 text-base font-serif text-gray-700 p-2 rounded-md" href="{{route('tasks.index')}}">Cancel</a>
 @endsection
