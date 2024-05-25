@@ -6,12 +6,13 @@
     <title>Task List Manager | Laravel</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+
     <!-- adding styles directive -->
     @yield('styles') 
 </head>
 <body class="container mt-10 mb-10 mx-auto">
     <div>
-        <h1 class="mt-5 mb-5 text-lg">@yield('title')</h1>
+        <h1 class="mt-5 mb-5 text-2xl text-gray-700">@yield('title')</h1>
         <div class="mt-5 mb-5 text-xl">
             <!-- showing flash message -->
             @if (session()->has('success'))

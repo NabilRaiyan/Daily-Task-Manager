@@ -9,6 +9,13 @@
             color: red;
             font-size: 1rem;
         }
+
+        input::placeholder{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.3rem;
+
+        }
+
     </style>
 @endsection
 
@@ -20,25 +27,25 @@
             @method("PUT")
         @endisset
         <div>
-            <input placeholder="Title" type="text" name="title" id="title" value="{{$task -> title ?? old('title')}}">
+            <input class="text-base text-slate-600 w-6/12 mt-3 border p-2 border-orange-400 rounded-md" placeholder="Title" type="text" name="title" id="title" value="{{$task -> title ?? old('title')}}">
         </div>
         @error ('title')
             <p class="error-message">{{$message}}</p>
         @enderror
         <div>
-            <textarea placeholder="Description" rows="5" name="description" id="description">{{$task->description ?? old('description')}}</textarea>
+            <textarea class="text-base text-slate-600 w-6/12 mt-3 border p-2 border-orange-400 rounded-md" placeholder="Description" rows="5" name="description" id="description">{{$task->description ?? old('description')}}</textarea>
         </div>
         @error ('description')
             <p class="error-message">{{$message}}</p>
         @enderror
         <div>
-        <textarea placeholder="Long Description" rows="10" name="long_description" id="long_description">{{$task->long_description ?? old('long_description')}}</textarea>
+        <textarea class="text-base text-slate-600 w-6/12 mt-3 border p-2 border-orange-400 rounded-md" placeholder="Long Description" rows="10" name="long_description" id="long_description">{{$task->long_description ?? old('long_description')}}</textarea>
         </div>
         @error ('long_description')
             <p class="error-message">{{$message}}</p>
         @enderror
         <div>
-            <button type="submit">@isset($task)
+            <button class="bg-green-200 text-md font-serif text-gray-700 p-2 rounded-md mb-5" type="submit">@isset($task)
                 Update Task
                 @else
                 Add Task
@@ -48,5 +55,5 @@
     </form>
 
     <!-- adding tasks route to go back to the all task -->
-    <a href="{{route('tasks.index')}}">Back to all task</a>
+    <a class="bg-blue-200 text-base font-serif text-gray-700 p-2 rounded-md" href="{{route('tasks.index')}}">⬅️ Back to all task</a>
 @endsection

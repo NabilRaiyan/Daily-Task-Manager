@@ -18,25 +18,25 @@
         </style>
     @endsection
 
-    <div>
+    <div class="mt-7 font-sans">
         <!-- <h2>{{$task->title}}</h2> -->
-        <p>{{$task->description}}</p>
+        <p class="text-base text-slate-600 mb-4">{{$task->description}}</p>
 
         @if ($task->long_description)
-            <p>{{$task->long_description}}</p>
+            <p class="text-base text-slate-600 mb-5">{{$task->long_description}}</p>
         @endif
 
-        <p>{{$task->created_at}}</p>
-        <p>{{$task->updated_at}}</p>
+        <p class="text-base text-blue-500 mt-5">Created: {{$task->created_at->diffforHumans()}}</p>
+        <p class="text-base text-blue-500 mb-5">Updated: {{$task->updated_at->diffforHumans()}}</p>
 
         <!-- giving route name to go back to the tasks page -->
-        <a href="{{route('tasks.index')}}">Back</a>
+        <a class="bg-green-200 text-md font-serif text-gray-700 p-2 rounded-md" href="{{route('tasks.index')}}">⬅️ Back</a>
 
-        <div> Task Status: 
+        <div class="text-base mb-5 mt-5"> Task Status: 
             @if ($task->completed)
-                Completed
+                <span class="text-green-800">Completed</span>
             @else
-                Not Completed
+                <span class="text-red-800">Not Completed</span>
             @endif
         </div>
 
